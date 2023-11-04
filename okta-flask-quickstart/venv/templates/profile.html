@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Profile Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #111;
+            color: #fff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #222;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            border: 2px solid #3498DB;
+            margin-top: 50px;
+        }
+        h2 {
+            color: #3498DB;
+        }
+        p {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        span {
+            color: #E74C3C;
+            font-weight: bold;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 1px 1px; /* Further reduced padding to make the button smaller */
+            margin: 1px 0;
+            background-color: #3498DB;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            border-radius: 1px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #0c061a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Welcome</h2>
+        <p>Hello User<span>{{ user.email }}</span>:)</p>
+        <a href="http://localhost:8501" class="btn">Go to Main Page</a>
+    </div>
+</body>
+</html>

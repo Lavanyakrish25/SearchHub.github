@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <title>SignIn With OKTA</title>
+    <style>
+        body {
+            background-color: #121212; /* Dark background color */
+            color: #fff; /* Text color */
+        }
+
+        h1 {
+            margin: 2em 0;
+        }
+
+        /* Style for the buttons */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px; /* Add some space */
+        }
+
+        .button {
+            margin: 0 10px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .signout-button {
+            background-color: #E74C3C; /* Red color for sign-out */
+            color: #fff;
+        }
+
+        .signin-button {
+            background-color: #3498DB; /* Blue color for sign-in */
+            color: #fff;
+        }
+
+        .signin-form {
+            display: none;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 400px; /* Set the maximum width */
+            padding: 20px; /* Add padding to the container */
+            margin: 0 auto; /* Center the container horizontally */
+        }
+
+        .jumbotron {
+            background-color: rgba(0, 0, 0, 0.7); /* Dark background for the message box */
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .form-group {
+            margin: 10px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center items vertically */
+        }
+
+        label {
+            font-size: 18px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #444;
+            border: 1px solid #555;
+            border-radius: 5px;
+            color: #fff;
+        }
+
+        .form-control::placeholder {
+            color: #999;
+        }
+
+        button.signin-button:hover,
+        button.signout-button:hover {
+            filter: brightness(90%); /* Slightly brighten the button on hover */
+        }
+        
+        .user-box {
+            position: relative;
+            margin: 10px 0;
+        }
+        
+        .user-box input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #444;
+            border: 1px solid #555;
+            border-radius: 5px;
+            color: #fff;
+        }
+        
+        .user-box label {
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 10px;
+            pointer-events: none;
+            font-size: 16px;
+            transition: 0.2s;
+        }
+        
+        .user-box input:focus ~ label,
+        .user-box input:valid ~ label {
+            top: -20px;
+            left: 0;
+            background: #222;
+            padding: 0 5px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <h1 class="text-center">SignIn With OKTA</h1>
+    <div id="messageBox" class="jumbotron">
+        {% if current_user.is_authenticated %}
+        <p>Logged in as {{ current_user.username }}</p>
+        <form method="post" action="{{ url_for("signout") }}" class="button-container">
+            <button class="button signout-button" type="submit">Sign out</button>
+        </form>
+        {% else %}
+        <div class="button-container">
+            <button class="button signin-button" type="button" onclick="toggleSignInForm()">Touch Me</button>
+        </div>
+        <div class="signin-form" id="signinForm">
+            <form method="post" action="{{ url_for("signin") }}">
+                <div class="user-box" style="margin-bottom: 10px;">
+                    <input type="email" id="email" name="email" required>
+                    <label for="email">Email</label>
+                </div>
+                <div class="user-box" style="margin-bottom: 10px;">
+                    <input type="password" id="password" name="password" required>
+                    <label for="password">Password</label>
+                </div>
+                <button class="button 3d-signin-button" type="submit">Sign In</button>
+            </form>
+        </div>
+        {% endif %}
+    </div>
+</div>
+<script>
+    function toggleSignInForm() {
+        var form = document.getElementById('signinForm');
+        form.style.display = form.style.display === 'none' ? 'block' : 'none';
+    }
+</script>
+</body>
+</html>

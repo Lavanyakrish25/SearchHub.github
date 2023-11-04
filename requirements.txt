@@ -1,0 +1,7 @@
+firebase_admin
+streamlit
+streamlit_option_menu
+Auth
+flask_login
+flask_cors
+okta_authc
